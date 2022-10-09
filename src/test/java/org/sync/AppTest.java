@@ -1,20 +1,28 @@
 package org.sync;
 
-import static org.junit.Assert.assertTrue;
-
+import org.apache.tomcat.jni.User;
 import org.junit.Test;
+import org.rkzl.sync.enums.MetadataType;
+import org.rkzl.sync.enums.ProcessType;
+import org.rkzl.sync.node.Sync;
+import org.rkzl.sync.service.SyncService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-{
+public class AppTest {
+
+    @Autowired
+    private Sync<User> syncNode;
+
     /**
      * Rigorous Test :-)
      */
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void shouldAnswerWithTrue() {
+        syncNode.sourceType(MetadataType.DB)
+                .destinationType(MetadataType.ES)
+                .start();
     }
 }

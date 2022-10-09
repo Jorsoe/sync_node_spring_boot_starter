@@ -1,14 +1,23 @@
 package org.rkzl.sync.node.Impl;
 
+import lombok.extern.slf4j.Slf4j;
+import org.rkzl.sync.cache.Cache;
 import org.rkzl.sync.enums.MetadataType;
 import org.rkzl.sync.node.Sync;
+import org.rkzl.sync.service.SyncService;
 
 /**
  * @Author: Renke
  * @DateTime: 2022/10/9 12:40
  * @Description: Sync Process
  */
+@Slf4j
 public class SyncProcess<T> extends Sync<T> {
+
+    private final Cache cache = Cache.singletonInstance();
+
+    public SyncProcess() {
+    }
 
     /**
      * assign source type for data
@@ -18,7 +27,8 @@ public class SyncProcess<T> extends Sync<T> {
      */
     @Override
     public Sync<T> sourceType(MetadataType type) {
-        return null;
+        cache.setSourceType(type);
+        return this;
     }
 
     /**
@@ -29,36 +39,26 @@ public class SyncProcess<T> extends Sync<T> {
      */
     @Override
     public Sync<T> destinationType(MetadataType type) {
-        return null;
+        cache.setDestType(type);
+        return this;
     }
 
     /**
-     * data sync from database process
+     * data sync from process
      *
      * @return Sync<T>
      */
     @Override
-    public Sync<T> database() {
-        return null;
-    }
-
-    /**
-     * data sync from rpc process
-     *
-     * @return Sync<T>
-     */
-    @Override
-    public Sync<T> rpc() {
-        return null;
+    public Sync<T> process(SyncService service) {
+        Integer status = service.syncPerson();
+        log.debug("sync result is : {}", status);
+        return this;
     }
 
     /**
      * start process
-     *
-     * @return Sync<T>
      */
     @Override
-    public Sync<T> start() {
-        return null;
+    public void start() {
     }
 }

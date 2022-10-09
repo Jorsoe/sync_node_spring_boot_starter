@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
  * @Description: Sync Process Auto Configuration
  */
 @Configuration
-@ConditionalOnBean(Sync.class)
 public class SyncProcessAutoConfiguration {
 
     @Bean

@@ -1,6 +1,8 @@
 package org.rkzl.sync.node;
 
 import org.rkzl.sync.enums.MetadataType;
+import org.rkzl.sync.enums.ProcessType;
+import org.rkzl.sync.service.SyncService;
 
 /**
  * @Author: Renke
@@ -26,24 +28,16 @@ public abstract class Sync<T> {
     public abstract Sync<T> destinationType(MetadataType type);
 
     /**
-     * data sync from database process
+     * data sync from process
      *
      * @return Sync<T>
      */
-    public abstract Sync<T> database();
-
-    /**
-     * data sync from rpc process
-     *
-     * @return Sync<T>
-     */
-    public abstract Sync<T> rpc();
+    public abstract Sync<T> process(SyncService service);
 
     /**
      * start process
      *
-     * @return Sync<T>
      */
-    public abstract Sync<T> start();
+    public abstract void start();
 
 }
