@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
  * @DateTime: 2022/10/9 12:27
  * @Description: Sync Process Auto Configuration
  */
-@Configuration
 public class SyncProcessAutoConfiguration {
 
     @Bean

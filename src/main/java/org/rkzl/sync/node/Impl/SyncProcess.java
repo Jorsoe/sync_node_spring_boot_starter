@@ -4,7 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.rkzl.sync.cache.Cache;
 import org.rkzl.sync.enums.MetadataType;
 import org.rkzl.sync.node.Sync;
-import org.rkzl.sync.service.SyncService;
+
+import java.util.function.Supplier;
 
 /**
  * @Author: Renke
@@ -49,9 +50,9 @@ public class SyncProcess<T> extends Sync<T> {
      * @return Sync<T>
      */
     @Override
-    public Sync<T> process(SyncService service) {
-        Integer status = service.syncPerson();
-        log.debug("sync result is : {}", status);
+    public Sync<T> process(Supplier<? extends T> supplier) {
+        T t = supplier.get();
+        log.debug("sync result is : {}", t);
         return this;
     }
 

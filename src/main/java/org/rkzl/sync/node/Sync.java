@@ -1,8 +1,8 @@
 package org.rkzl.sync.node;
 
 import org.rkzl.sync.enums.MetadataType;
-import org.rkzl.sync.enums.ProcessType;
-import org.rkzl.sync.service.SyncService;
+
+import java.util.function.Supplier;
 
 /**
  * @Author: Renke
@@ -32,7 +32,7 @@ public abstract class Sync<T> {
      *
      * @return Sync<T>
      */
-    public abstract Sync<T> process(SyncService service);
+    public abstract Sync<T> process(Supplier<? extends T> supplier);
 
     /**
      * start process

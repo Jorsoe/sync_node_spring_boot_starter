@@ -3,9 +3,7 @@ package org.sync;
 import org.apache.tomcat.jni.User;
 import org.junit.Test;
 import org.rkzl.sync.enums.MetadataType;
-import org.rkzl.sync.enums.ProcessType;
 import org.rkzl.sync.node.Sync;
-import org.rkzl.sync.service.SyncService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
